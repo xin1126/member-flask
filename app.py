@@ -7,6 +7,8 @@ print("資料庫連線建立成功")
 
 #初始化 Flask 伺服器
 from flask import *
+import os
+
 app=Flask(
     __name__,
     static_folder="public",
@@ -85,4 +87,5 @@ def signout():
     del session["nickname"]
     return redirect("/")
 
-app.run(port=5000)
+if __name__ == '__main__':
+app.run(debug=True, port=os.getenv("PORT", default=5000), host='0.0.0.0')
